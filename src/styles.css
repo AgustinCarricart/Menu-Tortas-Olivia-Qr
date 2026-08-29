@@ -1,1 +1,137 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: white;
+}
+/* Variables de color según la estética de la imagen */
+:root {
+  --font-title: 'Playfair Display', serif;
+  --font-accent: 'Italianno', cursive;
+  --font-sub: 'Montserrat', sans-serif;
+  --color-primary: #802334; /* Rojo/vino de las direcciones y destacados */
+  --color-text: #2c2c2c;
+  --color-subtext: #8c8c8c;
+}
+
+/* Tipografía para títulos principales y botones */
+.font-title, h1, h2, h3 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* Tipografía cursiva para detalles (dirección, cerrado, etc.) */
+.font-accent, .text-cursive {
+  font-family: var(--font-accent);
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+/* Tipografía para subtítulos en mayúsculas (TORTAS · MINIS · ALFAJORES) */
+.font-sub, .text-subtitle {
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-subtext);
+}
+
+/* Botón tipo tarjeta */
+.card-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Círculo contenedor del ícono */
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+/* Colores de marca */
+.icon-whatsapp {
+  background-color: #25d366;
+}
+
+.icon-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+/* Contenido del texto al lado del ícono */
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+/* Estilos para los botones con íconos */
+.card-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.icon-whatsapp {
+  background-color: #25d366;
+}
+
+.icon-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
