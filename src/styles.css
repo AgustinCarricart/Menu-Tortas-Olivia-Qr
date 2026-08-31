@@ -136,16 +136,22 @@ html, body {
   text-align: left;
 }
 
+.card-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
 /* Estilos para los botones/enlaces tipo tarjeta */
 .card-btn {
   display: flex;
   align-items: center;
-  gap: 15px;
+  margin: 0 auto;
   width: 100%;
-  padding: 12px 20px;
+
   border-radius: 15px;
   border: 1px solid #e5e5e5;
-  background-color: #ffffff;
+  background-color: #fff;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Cite: 1 */
