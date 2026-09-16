@@ -151,7 +151,7 @@ export class AppComponent {
     id: 33,
     nombre: 'Tarta de Dulce de leche',
     descripcion: 'Base sable con dulce de leche, trozos de chocolate y merengue',
-    imagenUrl: 'tortas/Manzana nueva.jpg',
+    imagenUrl: 'tortas/Tarta de dulce de leche.jfif',
     categoria: 'Tortas'
   },
 
