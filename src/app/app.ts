@@ -55,8 +55,8 @@ export class AppComponent {
   },
   {
     id: 2,
-    nombre: 'Tarta de Manzana',
-    descripcion: 'Nueces, crema e hilos de caramelo.',
+    nombre: 'Torta de Manzana',
+    descripcion: 'Biscochuelo de vainilla con manzana , nueces, crema e hilos de caramelo.',
     imagenUrl: 'tortas/Manzana nueva.jpg',
     categoria: 'Tortas'
   },
@@ -77,7 +77,7 @@ export class AppComponent {
   {
     id: 5,
     nombre: 'Brownie con dulce de leche y merengue italiano',
-    descripcion: 'Intensa base de brownie acompañada con abundantes capas de dulce de leche y copos de merengue italiano.',
+    descripcion: ' base de brownie acompañada con abundantes capas de dulce de leche y copos de merengue italiano.',
     imagenUrl: 'tortas/Brownie nueva.jpg',
     categoria: 'Tortas'
   },
@@ -92,7 +92,7 @@ export class AppComponent {
   {
     id: 8,
     nombre: 'Tarta de frutillas',
-    descripcion: 'Masa sablé crujiente con abundante crema pastelera y frutillas frescas seleccionadas con brillo artesanal.',
+    descripcion: 'Masa sablé  con abundante crema de leche y frutillas.',
     imagenUrl: 'tortas/Tarta de frutillas nueva.jpeg',
     categoria: 'Tortas'
   },
@@ -144,6 +144,14 @@ export class AppComponent {
     nombre: 'Quemado',
     descripcion: 'Brownie con dulce de leche, mousse de chocolate y merengue.',
     imagenUrl: 'tortas/Quemado nueva.jpeg',
+    categoria: 'Tortas'
+  },
+
+    {
+    id: 33,
+    nombre: 'Tarta de Dulce de leche',
+    descripcion: 'Base sable con dulce de leche, trozos de chocolate y merengue',
+    imagenUrl: 'tortas/Manzana nueva.jpg',
     categoria: 'Tortas'
   },
 
