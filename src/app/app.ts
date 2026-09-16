@@ -262,6 +262,20 @@ export class AppComponent {
     imagenUrl: 'alfajores/chocolate.jpeg',
     categoria: 'Alfajores'
   },
+   {
+    id: 34,
+    nombre: 'Alfajor con almendras',
+    descripcion: 'Masa sable con almendras y dulce de leche',
+    imagenUrl: 'alfajores/almendras.jfif',
+    categoria: 'Alfajores'
+  },
+   {
+    id: 35,
+    nombre: 'Rogelito',
+    descripcion: 'Tapas de masa con dulce de leche y cubierto en merengue',
+    imagenUrl: 'alfajores/rogelito.jfif',
+    categoria: 'Alfajores'
+  },
   
   ];
 
