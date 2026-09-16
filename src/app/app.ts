@@ -273,7 +273,7 @@ export class AppComponent {
     id: 35,
     nombre: 'Rogelito',
     descripcion: 'Tapas de masa con dulce de leche y cubierto en merengue',
-    imagenUrl: 'alfajores/rogelito.jfif',
+    imagenUrl: 'alfajores/rogelito2.jpeg',
     categoria: 'Alfajores'
   },
   
