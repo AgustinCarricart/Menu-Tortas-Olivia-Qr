@@ -24,11 +24,15 @@ export class AppComponent {
   readonly linkInstagramDirecto = `https://instagram.com/${this.USUARIO_INSTAGRAM}`;
   readonly linkGoogleMaps = 'https://www.google.com/maps/place/Tortas+olivia/@-38.0137297,-57.5418419,17z/data=!3m1!4b1!4m6!3m5!1s0x9584de844c43b5dd:0x2534ff35e1436777!8m2!3d-38.013734!4d-57.539267!16s%2Fg%2F1vyk3p9d?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D';
 
-  categoriaSeleccionada: 'Tortas' | 'Shots' | 'Profiteroles'  | 'Alfajores' = 'Tortas';
+  categoriaSeleccionada: 'Tortas' | 'Shots' | 'Profiteroles' | 'Alfajores' = 'Tortas';
+  busqueda: string = '';
 
   // Imagen actualmente ampliada (null = modal cerrado)
   imagenAmpliada: string | null = null;
   nombreImagenAmpliada: string = '';
+
+  readonly estadoHorario = this.calcularEstadoHorario();
+  readonly diaActual = this.obtenerDiaActual();
 
   catalogo: Producto[] = [
     // --- SECCIÓN TORTAS ---
@@ -266,7 +270,7 @@ export class AppComponent {
     id: 34,
     nombre: 'Alfajor con almendras',
     descripcion: 'Masa sable con almendras y dulce de leche',
-    imagenUrl: 'alfajores/almendras.jpeg',
+    imagenUrl: 'alfajores/almendras.jpg',
     categoria: 'Alfajores'
   },
    {
@@ -279,12 +283,36 @@ export class AppComponent {
   
   ];
 
-  get productosFiltrados(): Producto[] {
-    return this.catalogo.filter(p => p.categoria === this.categoriaSeleccionada);
+  private normalizar(texto: string): string {
+    return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  abrirWhatsApp(): void {
-    window.open(this.linkWhatsAppDirecto, '_blank');
+  get productosFiltrados(): Producto[] {
+    const q = this.normalizar(this.busqueda.trim());
+    if (!q) {
+      return this.catalogo.filter(p => p.categoria === this.categoriaSeleccionada);
+    }
+    return this.catalogo.filter(p =>
+      this.normalizar(`${p.nombre} ${p.descripcion} ${p.categoria}`).includes(q)
+    );
+  }
+
+  actualizarBusqueda(valor: string): void {
+    this.busqueda = valor;
+  }
+
+  limpiarBusqueda(): void {
+    this.busqueda = '';
+  }
+
+  linkWhatsAppProducto(producto: Producto): string {
+    const msg = `Hola Olivia! Quería consultar / pedir: ${producto.nombre} (${producto.categoria}).`;
+    return `${this.linkWhatsAppDirecto}?text=${encodeURIComponent(msg)}`;
+  }
+
+  abrirWhatsApp(producto?: Producto): void {
+    const url = producto ? this.linkWhatsAppProducto(producto) : this.linkWhatsAppDirecto;
+    window.open(url, '_blank', 'noopener');
   }
 
   // Abre el modal con la imagen ampliada
@@ -296,5 +324,45 @@ export class AppComponent {
   // Cierra el modal
   cerrarImagenAmpliada(): void {
     this.imagenAmpliada = null;
+  }
+
+  private obtenerFechaArgentina(): { dia: number; minutos: number } {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Argentina/Buenos_Aires',
+      weekday: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).formatToParts(new Date());
+
+    const map: Record<string, string> = {};
+    parts.forEach(p => { map[p.type] = p.value; });
+    const dayMap: Record<string, number> = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return {
+      dia: dayMap[map['weekday']] ?? 0,
+      minutos: parseInt(map['hour'] || '0', 10) * 60 + parseInt(map['minute'] || '0', 10)
+    };
+  }
+
+  private obtenerDiaActual(): number {
+    return this.obtenerFechaArgentina().dia;
+  }
+
+  private calcularEstadoHorario(): { abierto: boolean; texto: string } {
+    const { dia, minutos } = this.obtenerFechaArgentina();
+    if (dia >= 2 && dia <= 6) {
+      if ((minutos >= 600 && minutos < 780) || (minutos >= 1020 && minutos < 1200)) {
+        return { abierto: true, texto: 'Abierto ahora' };
+      }
+      if (minutos < 600) return { abierto: false, texto: 'Abre hoy 10:00' };
+      if (minutos >= 780 && minutos < 1020) return { abierto: false, texto: 'Abre hoy 17:00' };
+      return { abierto: false, texto: dia === 6 ? 'Abre dom 10:30' : 'Abre mañana 10:00' };
+    }
+    if (dia === 0) {
+      if (minutos >= 630 && minutos < 780) return { abierto: true, texto: 'Abierto ahora' };
+      if (minutos < 630) return { abierto: false, texto: 'Abre hoy 10:30' };
+      return { abierto: false, texto: 'Cerrado · Abre mar 10:00' };
+    }
+    return { abierto: false, texto: 'Cerrado · Abre mar 10:00' };
   }
 }
